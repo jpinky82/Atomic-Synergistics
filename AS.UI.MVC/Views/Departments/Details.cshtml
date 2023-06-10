@@ -1,0 +1,30 @@
+﻿@model AS.DATA.EF.Models.Department
+
+@{
+    ViewData["Title"] = "Details " + Model.DepartmentName;
+}
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+<div>
+    @*<h4>Department</h4>*@
+    <hr />
+    <dl class="row" style="margin-left: 3em;">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location.LocationAddress)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DepartmentId" style="margin-left: 3.5em;" class="btn btn-primary" >Edit</a> 
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

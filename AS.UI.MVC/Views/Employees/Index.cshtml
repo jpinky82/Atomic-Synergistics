@@ -1,0 +1,170 @@
+﻿@model IEnumerable<AS.DATA.EF.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1 class="px-4 pt-3">@ViewData["Title"]</h1>
+
+<div class="card shadow m-4">
+    <div class="card-header py-3">
+        @if (!User.IsInRole("Accounting"))
+        {
+            <h6 class="m-0 font-weight-bold text-primary"><a asp-action="Create">Create New</a></h6>
+        }
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Position)
+                        </th>
+                        @*            <th>
+                        @Html.DisplayNameFor(model => model.Salary)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.HireDate)
+                        </th>
+                        @* <th>
+                            @Html.DisplayNameFor(model => model.TerminationDate)
+                        </th>
+                                   <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                        @Html.DisplayNameFor(model => model.City)
+                        </th>
+                        <th>
+                        @Html.DisplayNameFor(model => model.State)
+                        </th>
+                        <th>
+                        @Html.DisplayNameFor(model => model.PostalCode)
+                        </th>
+                        <th>
+                        @Html.DisplayNameFor(model => model.CountryId)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Department)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Manager)
+                        </th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            @*            <td>
+                        @Html.DisplayFor(modelItem => item.Salary)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HireDate)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.TerminationDate)
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.PostalCode)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.CountryId)
+                        </td>*@
+                            <td>
+                                <a href="Mailto:@Html.DisplayFor(modelItem => item.Email)"> @Html.DisplayFor(modelItem => item.Email)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Manager.FirstName)
+                            </td>
+                            <td class="text-center">
+                                @if (!User.IsInRole("Accounting"))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> <span>|</span>
+                                }
+
+                                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <span>|</span> <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-moment.js"></script>
+
+    <script>
+
+        
+
+        // Call the dataTables jQuery plugin
+        $(document).ready(function () {
+
+            $.fn.dataTable.moment("M/D/YYYY");
+
+            $('#dataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });
+    </script>
+}

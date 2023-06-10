@@ -1,0 +1,42 @@
+﻿@model AS.DATA.EF.Models.Order
+
+@{
+    ViewData["Title"] = "Details " + Model.Ponumber;
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+<div>
+    @*<h4>Order</h4>*@
+    <hr />
+    <dl class="row" style="margin-left: 3em;">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ponumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ponumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vendor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vendor.VendorName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OrderId" style="margin-left: 3.5em;" class="btn btn-primary">Edit</a> 
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

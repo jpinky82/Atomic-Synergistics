@@ -1,0 +1,37 @@
+﻿@model AS.DATA.EF.Models.SaleProduct
+
+@{
+    ViewData["Title"] = "Details " + Model.ProductId;
+}
+
+<h1> style="margin-left: 1.5em;"@ViewData["Title"]</h1>
+
+
+<div>
+    @*<h4>SaleProduct</h4>*@
+    <hr />
+    <dl class="row" style="margin-left: 3em;">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SaleQuantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SaleQuantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sale.SaleId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SaleProductId" style="margin-left: 3.5em;" class="btn btn-primary">Edit</a> 
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,73 @@
+﻿@model AS.DATA.EF.Models.Vendor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+@*<h4>Vendor</h4>*@
+<hr />
+<div class="row" style="margin-left: 3em;">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VendorName" class="control-label"></label>
+                <input asp-for="VendorName" class="form-control" />
+                <span asp-validation-for="VendorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorContact" class="control-label"></label>
+                <input asp-for="VendorContact" class="form-control" />
+                <span asp-validation-for="VendorContact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorPhone" class="control-label"></label>
+                <input asp-for="VendorPhone" class="form-control" />
+                <span asp-validation-for="VendorPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorEmail" class="control-label"></label>
+                <input asp-for="VendorEmail" class="form-control" />
+                <span asp-validation-for="VendorEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorAddress" class="control-label"></label>
+                <input asp-for="VendorAddress" class="form-control" />
+                <span asp-validation-for="VendorAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorCity" class="control-label"></label>
+                <input asp-for="VendorCity" class="form-control" />
+                <span asp-validation-for="VendorCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorState" class="control-label"></label>
+                <input asp-for="VendorState" class="form-control" />
+                <span asp-validation-for="VendorState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorPostalCode" class="control-label"></label>
+                <input asp-for="VendorPostalCode" class="form-control" />
+                <span asp-validation-for="VendorPostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+                <select asp-for="CountryId" class ="form-control" asp-items="ViewBag.CountryId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="margin-left: 3.5em;" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

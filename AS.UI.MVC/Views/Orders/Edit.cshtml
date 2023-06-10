@@ -1,0 +1,50 @@
+﻿@model AS.DATA.EF.Models.Order
+
+@{
+    ViewData["Title"] = "Edit " + Model.Ponumber;
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+@*<h4>Order</h4>*@
+<hr />
+<div class="row" style="margin-left: 3em;">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="form-group">
+                <label asp-for="Ponumber" class="control-label"></label>
+                <input asp-for="Ponumber" class="form-control" />
+                <span asp-validation-for="Ponumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorId" class="control-label"></label>
+                <select asp-for="VendorId" class="form-control" asp-items="ViewBag.VendorId"></select>
+                <span asp-validation-for="VendorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderTotal" class="control-label"></label>
+                <input asp-for="OrderTotal" class="form-control" />
+                <span asp-validation-for="OrderTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="margin-left: 3.5em;" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

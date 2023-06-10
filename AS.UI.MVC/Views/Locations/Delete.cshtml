@@ -1,0 +1,52 @@
+﻿@model AS.DATA.EF.Models.Location
+
+@{
+    ViewData["Title"] = "Delete " + Model.LocationAddress;
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+<h3 style="margin-left: 2.2em;">Are you sure you want to delete @Model.LocationAddress?</h3>
+<div>
+    @*<h4>Location</h4>*@
+    <hr />
+    <dl class="row" style="margin-left: 3em;">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationAddress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationCity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationCity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationState)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationPostalCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationPostalCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Country.CountryName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="LocationId" />
+        <input type="submit" value="Delete" class="btn btn-danger" style="margin-left: 3.5em" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

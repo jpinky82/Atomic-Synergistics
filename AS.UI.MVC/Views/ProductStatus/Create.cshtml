@@ -1,0 +1,34 @@
+﻿@model AS.DATA.EF.Models.ProductStatus
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+@*<h4>ProductStatus</h4>*@
+<hr />
+<div class="row" style="margin-left: 3em;">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductStatusName" class="control-label"></label>
+                <input asp-for="ProductStatusName" class="form-control" />
+                <span asp-validation-for="ProductStatusName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="margin-left: 3.5em;" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

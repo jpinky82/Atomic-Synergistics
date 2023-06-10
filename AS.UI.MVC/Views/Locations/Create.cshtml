@@ -1,0 +1,53 @@
+﻿@model AS.DATA.EF.Models.Location
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="margin-left: 1.5em;">@ViewData["Title"]</h1>
+
+
+@*<h4>Location</h4>*@
+<hr />
+<div class="row" style="margin-left: 3em;">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LocationAddress" class="control-label"></label>
+                <input asp-for="LocationAddress" class="form-control" />
+                <span asp-validation-for="LocationAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationCity" class="control-label"></label>
+                <input asp-for="LocationCity" class="form-control" />
+                <span asp-validation-for="LocationCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationState" class="control-label"></label>
+                <input asp-for="LocationState" class="form-control" />
+                <span asp-validation-for="LocationState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationPostalCode" class="control-label"></label>
+                <input asp-for="LocationPostalCode" class="form-control" />
+                <span asp-validation-for="LocationPostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+                <select asp-for="CountryId" class ="form-control" asp-items="ViewBag.CountryId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="margin-left: 3.5em;" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

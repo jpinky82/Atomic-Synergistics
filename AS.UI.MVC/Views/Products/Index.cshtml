@@ -1,0 +1,130 @@
+﻿@model IEnumerable<AS.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1 class="px-4 pt-3">@ViewData["Title"]</h1>
+
+
+<div class="card shadow m-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"><a asp-action="Create">Create New</a></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductName)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.Description)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.CostPerUnit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PricePerUnit)
+                        </th>
+                        @* <th>
+                        @Html.DisplayNameFor(model => model.UnitType)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.UnitsInStock)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductImage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductStatus)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductType)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.Vendor)
+                        </th>*@
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CostPerUnit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PricePerUnit)
+                            </td>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.UnitType)
+                        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitsInStock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.ProductImage)*@
+                                <img src="~/img/t_@item.ProductImage" class="img-fluid" alt="@item.ProductName" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductStatus.ProductStatusName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductType.ProductTypeName)
+                            </td>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.Vendor.VendorAddress)
+                        </td>*@
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                                @if (!User.IsInRole("Accounting"))
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });
+    </script>
+}
